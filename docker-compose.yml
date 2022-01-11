@@ -1,0 +1,43 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bin/dev"
+    tty: true
+    labels:
+      - "traefik.http.routers.learn-oauth2.entrypoints=web"
+      - "traefik.http.routers.learn-oauth2.rule=Host(`learn-oauth2.docker`)"
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+
+  sb:
+    build: .
+    command: bash -c "yarn run storybook"
+    tty: true
+    labels:
+      - "traefik.http.routers.learn-oauth2-sb.entrypoints=web"
+      - "traefik.http.routers.learn-oauth2-sb.rule=Host(`learn-oauth2-sb.docker`)"
+      - "traefik.http.services.learn-oauth2-sb.loadbalancer.server.port=6006"
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "6006:6006"
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider=value
+    
+  redis:
+    image: redis
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
+  bundle:
+
+networks:
+  default:
+    external:
+      name: "traefik_net"
