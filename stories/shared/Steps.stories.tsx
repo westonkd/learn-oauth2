@@ -1,6 +1,6 @@
 import React from "react";
-import Steps from "../app/javascript/shared/Steps";
-import ObtainCredStep from "../app/javascript/shared/ObtainCredStep";
+import Steps from "../../app/javascript/shared/Steps";
+import ObtainCredStep from "../../app/javascript/shared/ObtainCredStep";
 
 export default {
   title: "Shared/Steps",
