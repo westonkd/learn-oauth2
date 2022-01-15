@@ -18,7 +18,26 @@ const ObtainCredStep = ({ advance, back }: StepProps): JSX.Element => {
             </Typography.Title>
             <Typography.Paragraph>
               Before we can get a users's data from Sound Stream, we need to let
-              Sound Stream about our app. This process is called "registration."
+              Sound Stream know about our app. This process is called
+              "registration."
+            </Typography.Paragraph>
+            <Typography.Paragraph>
+              Registraiton happens one time and is "out-of-band," meaning it's
+              not part of the OAuth2 request flow, but is required before we can
+              initiate that flow. We will perform registration for our
+              application by filling out a form on Sound Stream's website.
+            </Typography.Paragraph>
+            <Typography.Paragraph>
+              Before we can get a users's data from Sound Stream, we need to let
+              Sound Stream know about our app. This process is called
+              "registration."
+            </Typography.Paragraph>
+            <Typography.Paragraph>
+              We will give Sound Stream information about our app including its
+              name, support email address, and{" "}
+              <Typography.Text strong>Redirect URI</Typography.Text>. The{" "}
+              <Typography.Text strong>Redirect URI</Typography.Text> is a URI we
+              will use later in the OAuth2 request flow.
             </Typography.Paragraph>
             <Typography.Paragraph>
               After we give Sound Stream details about our app, Sound Stream
@@ -47,7 +66,7 @@ const ObtainCredStep = ({ advance, back }: StepProps): JSX.Element => {
             <Typography.Paragraph>
               The <Typography.Text strong>Secret</Typography.Text>, on the other
               hand, is critical to keep private. It's used to prove to Sound
-              Stream that our app is who it says it is.
+              Stream that our app is an authorized application.
             </Typography.Paragraph>
           </Panel>
           <Panel header="Apply" key="2">
